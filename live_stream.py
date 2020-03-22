@@ -9,15 +9,14 @@ class Streamer(tweepy.StreamListener):
     def on_error(self, status_code):
         print("Woops, Something went wrong:: Status code="+str(status_code))
 
-def set_up():
+    def on_data(self, data):
+        print(f"Data recieved:  {data}")
+
+def main():
     #Create stream instance
     # TODO: Move Stream class to different file
     streamer = Streamer()
     auth = AuthHandler(api_key, api_secret)
-    stream_listener = tweepy.Stream(auth.api(), listener=streamer)
-    return stream_listener
-
-def main():
-    get_stream = set_up()
+    tweepy.Stream(auth.api(), listener=streamer)
     
 
