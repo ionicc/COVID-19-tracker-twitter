@@ -8,7 +8,7 @@ class AuthHandler():
         self.auth = tweepy.OAuthHandler(self.consumer_token, self.consumer_secret)
         self.auth.set_access_token(self.consumer_token, self.consumer_token)
 
-    def api():
+    def api(self):
         return tweepy.API(self.auth)
         
 
