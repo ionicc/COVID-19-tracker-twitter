@@ -2,6 +2,8 @@ import tweepy
 from live_stream import AuthHandler
 from live_stream.config import consumer_api_token, consumer_api_secret, access_token, access_secret
 import time
+import json
+
 class Streamer(tweepy.StreamListener):
 	
     def on_status(self, status):
@@ -11,7 +13,8 @@ class Streamer(tweepy.StreamListener):
         print("Woops, Something went wrong:: Status code="+str(status_code))
 
     def on_data(self, data):
-        print("Data recieved:{}".format(data))
+        data = json.loads(data)
+        print("Data recieved:{}".format(data.get("text")))
         time.sleep(1)
 
 def main():
